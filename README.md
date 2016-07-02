@@ -11,27 +11,27 @@ supported.
 Example: Transmit a packet to another node
 ------------------------------------------
 
-	xbee = XBeeRuby::XBee.new port: '/dev/ttyUSB0', rate: 57600
-	xbee.open
-	request = XBeeRuby::TxRequest.new  XBeeRuby::Address64.new(0x00, 0x13, 0xa2, 0x00, 0x40, 0x4a, 0x50, 0x0c), [0x12, 0x34, 0x56]
-	xbee.write_request request
-	puts xbee.read_response
-	xbee.close
+  xbee = XBeeRuby::XBee.new port: '/dev/ttyUSB0', rate: 57600
+  xbee.open
+  request = XBeeRuby::TxRequest.new  XBeeRuby::Address64.new(0x00, 0x13, 0xa2, 0x00, 0x40, 0x4a, 0x50, 0x0c), [0x12, 0x34, 0x56]
+  xbee.write_request request
+  puts xbee.read_response
+  xbee.close
 
 Example: Receive packets
 ------------------------
 
-	xbee = XBeeRuby::XBee.new port: '/dev/ttyUSB0', rate: 57600
-	xbee.open
-	while true do
-		response = xbee.read_response
-		case response
-			when XBeeRuby::RxResponse
-				puts "Received from #{response.address64}: #{response.data}"
-			else
-				puts "Other response: #{response}"
-		end
-	end
+  xbee = XBeeRuby::XBee.new port: '/dev/ttyUSB0', rate: 57600
+  xbee.open
+  while true do
+    response = xbee.read_response
+    case response
+      when XBeeRuby::RxResponse
+        puts "Received from #{response.address64}: #{response.data}"
+      else
+        puts "Other response: #{response}"
+    end
+  end
 
 Supported frame types
 ---------------------
