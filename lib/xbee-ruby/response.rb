@@ -1,7 +1,5 @@
 module XBeeRuby
-
   class Response
-
     @@response_types = {}
 
     def self.frame_type type
@@ -15,8 +13,5 @@ module XBeeRuby
     def to_s
       'Response'
     end
-
   end
-
 end
-

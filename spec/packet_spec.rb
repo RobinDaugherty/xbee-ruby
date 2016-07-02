@@ -1,9 +1,7 @@
 require 'spec_helper'
 
 module XBeeRuby
-
   describe Packet do
-
     subject { Packet.new [0x7e, 0x12, 0x34, 0x56] }
 
     its(:data) { should == [0x7e, 0x12, 0x34, 0x56] }
@@ -50,11 +48,9 @@ module XBeeRuby
       describe 'with a wrong length' do
         specify { expect { Packet.from_bytes [0x7e, 0x00, 0x88, 0x7d, 0x31, 0x34, 0xb9] }.to raise_error ArgumentError }
       end
-
     end
 
     describe '::from_byte_enum' do
-
       describe 'which provides a valid frame' do
         subject { Packet.from_byte_enum [0x7e, 0x00, 0x02, 0x11, 0x22, 0xcc].to_enum }
         its(:data) { should == [0x11, 0x22] }
@@ -80,12 +76,10 @@ module XBeeRuby
       describe 'with a wrong length' do
         specify { expect { Packet.from_byte_enum [0x7e, 0x00, 0x88, 0x7d, 0x31, 0x34, 0xb9].to_enum }.to raise_error IOError }
       end
-
     end
 
     describe '#==' do
       it { should == Packet.new([0x7e, 0x12, 0x34, 0x56]) }
     end
   end
-
 end

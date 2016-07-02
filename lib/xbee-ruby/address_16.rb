@@ -1,9 +1,7 @@
 require 'xbee-ruby/adress'
 
 module XBeeRuby
-
   class Address16 < Address
-
     def initialize msb, lsb
       @address = [msb, lsb]
     end
@@ -37,7 +35,5 @@ module XBeeRuby
     end
 
     BROADCAST = Address16.new 0xff, 0xfe
-
   end
-
 end

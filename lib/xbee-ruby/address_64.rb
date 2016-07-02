@@ -1,9 +1,7 @@
 require 'xbee-ruby/adress'
 
 module XBeeRuby
-
   class Address64 < Address
-
     def initialize b1, b2, b3, b4, b5, b6, b7, b8
       @address = [b1, b2, b3, b4, b5, b6, b7, b8]
     end
@@ -39,5 +37,4 @@ module XBeeRuby
     BROADCAST = Address64.new 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xff, 0xff
     COORDINATOR = Address64.new 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
   end
-
 end

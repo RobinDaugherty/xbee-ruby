@@ -1,9 +1,7 @@
 require 'spec_helper'
 
 module XBeeRuby
-
   describe XBee do
-
     let!(:serial) { double('SerialPort').as_null_object }
     let!(:xbee) { XBee.new port: '/dev/ttyS0', rate: 57600 }
 
@@ -60,17 +58,14 @@ module XBeeRuby
         xbee.open
         expect { xbee.read_packet }.to raise_error IOError
       end
-
     end
 
     describe '#read_response' do
-
       it 'should read the next response from the serial port' do
         expect(serial).to receive(:readbyte).and_return(0x7e, 0x00, 0x07, 0x8b, 0x02, 0x79, 0x38, 0x00, 0x00, 0x00, 0xc1)
         xbee.open
         xbee.read_response.should == TxResponse.new([0x8b, 0x02, 0x79, 0x38, 0x00, 0x00, 0x00])
       end
-
     end
 
     describe '#connected?' do
@@ -89,5 +84,4 @@ module XBeeRuby
       end
     end
   end
-
 end

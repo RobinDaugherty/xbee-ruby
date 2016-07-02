@@ -1,9 +1,7 @@
 require 'xbee-ruby/request'
 
 module XBeeRuby
-
   class TxRequest < Request
-
     attr_reader :address64
     attr_reader :address16
     attr_reader :data
@@ -23,8 +21,5 @@ module XBeeRuby
     def frame_data
       @address64.to_a + @address16.to_a + [@radius, @options] + @data
     end
-
   end
-
 end
-

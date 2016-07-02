@@ -1,9 +1,7 @@
 require 'spec_helper'
 
 module XBeeRuby
-
   describe Address16 do
-
     subject { Address16.new 0x12, 0x34 }
 
     describe '#to_s' do
@@ -49,7 +47,5 @@ module XBeeRuby
     describe '::BROADCAST' do
       specify { Address16::BROADCAST.should == Address16.new(0xff, 0xfe)}
     end
-
   end
-
 end

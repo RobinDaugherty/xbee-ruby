@@ -1,7 +1,5 @@
 module XBeeRuby
-
   class Request
-
     @@frame_id = 1
 
     def self.next_frame_id
@@ -25,8 +23,5 @@ module XBeeRuby
     def packet
       Packet.new([frame_type, frame_id] + frame_data)
     end
-
   end
-
 end
-

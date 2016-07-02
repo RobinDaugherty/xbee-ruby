@@ -1,7 +1,5 @@
 module XBeeRuby
-
   class Packet
-
     START_BYTE = 0x7e
     ESCAPE = 0x7d
     XON = 0x11
@@ -114,5 +112,4 @@ module XBeeRuby
       'Packet [' + data.map { |b| "0x#{b.to_s 16}" }.join(', ') + ']'
     end
   end
-
 end

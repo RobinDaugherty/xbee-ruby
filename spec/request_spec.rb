@@ -1,9 +1,7 @@
 require 'spec_helper'
 
 module XBeeRuby
-
   describe Request do
-
     its(:frame_id) { should == 1 }
     its(:frame_id) { should_not == Request.new.frame_id }
 
@@ -21,7 +19,5 @@ module XBeeRuby
       end
       its (:packet) { should == Packet.new([0xaa, 0x01, 0x12, 0x34, 0x56]) }
     end
-
   end
-
 end

@@ -1,9 +1,7 @@
 require 'xbee-ruby/response'
 
 module XBeeRuby
-
   class ModemStatusResponse < Response
-
     frame_type 0x8a
 
     attr_reader :modem_status
@@ -20,5 +18,4 @@ module XBeeRuby
       "ModemStatusResponse[#{super}](modem_status=0x#{modem_status})"
     end
   end
-
 end

@@ -1,9 +1,7 @@
 require 'xbee-ruby/packet'
 
 module XBeeRuby
-
   class XBee
-
     # Either specify the port and serial parameters
     #
     #   xbee = XBeeRuby::Xbee.new port: '/dev/ttyUSB0', rate: 9600
@@ -71,5 +69,4 @@ module XBeeRuby
       @logger.call yield if @logger
     end
   end
-
 end

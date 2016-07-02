@@ -1,9 +1,7 @@
 require 'xbee-ruby/response'
 
 module XBeeRuby
-
   class TxResponse < Response
-
     frame_type 0x8b
 
     attr_reader :frame_id
@@ -31,6 +29,4 @@ module XBeeRuby
           "delivery_status=#{delivery_status}, discovery_status=#{discovery_status})"
     end
   end
-
 end
-

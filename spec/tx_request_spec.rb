@@ -1,9 +1,7 @@
 require 'spec_helper'
 
 module XBeeRuby
-
   describe TxRequest do
-
     subject { TxRequest.new Address64.new(0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88), [0x12, 0x34] }
 
     its(:frame_type) { should == 0x10 }
@@ -23,7 +21,5 @@ module XBeeRuby
       subject { TxRequest.new Address64::BROADCAST, [], radius: 123 }
       its(:radius) { should == 123 }
     end
-
   end
-
 end

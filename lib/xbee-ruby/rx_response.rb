@@ -1,10 +1,7 @@
 require 'xbee-ruby/response'
 
 module XBeeRuby
-
-
   class RxResponse < Response
-
     frame_type 0x90
 
     attr_reader :address64
@@ -28,6 +25,4 @@ module XBeeRuby
       "RxResponse[#{super}](address64=0x#{address64}, address16=0x#{address16}, receive_otions=#{receive_options})"
     end
   end
-
 end
-
