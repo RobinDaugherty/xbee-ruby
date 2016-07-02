@@ -1,13 +1,3 @@
-=begin
-
-This file is part of the xbee-ruby gem.
-
-Copyright 2013-2014 Dirk Grappendorf, www.grappendorf.net
-
-Licensed under the The MIT License (MIT)
-
-=end
-
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'xbee-ruby/version'

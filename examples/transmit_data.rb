@@ -1,13 +1,3 @@
-=begin
-
-This file is part of the xbee-ruby gem.
-
-Copyright 2013-2014 Dirk Grappendorf, www.grappendorf.net
-
-Licensed under the The MIT License (MIT)
-
-=end
-
 require_relative '../lib/xbee-ruby'
 
 xbee = XBeeRuby::XBee.new port: '/dev/ttyUSB0', rate: 57600
