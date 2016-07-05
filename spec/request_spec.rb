@@ -6,7 +6,7 @@ module XBeeRuby
     its(:frame_id) { should_not == Request.new.frame_id }
 
     describe '#frame_data' do
-      it 'should raise an exception because Request is abstract' do
+      it 'raises an exception because Request is abstract' do
         expect { subject.frame_data }.to raise_error
       end
     end
