@@ -70,17 +70,17 @@ module XBeeRuby
 
     describe '#connected?' do
       context 'if it is not connected' do
-        its(:connected?) { should be_falsey }
+        its(:connected?) { is_expected.to be_falsey }
       end
 
       context 'if it is connected' do
         before { xbee.open }
-        its(:connected?) { should be_truthy }
+        its(:connected?) { is_expected.to be_truthy }
       end
 
       context 'if it is connected and then closed' do
         before { xbee.open; xbee.close }
-        its(:connected?) { should be_falsey }
+        its(:connected?) { is_expected.to be_falsey }
       end
     end
   end
