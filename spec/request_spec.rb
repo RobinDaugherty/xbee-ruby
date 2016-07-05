@@ -7,7 +7,7 @@ module XBeeRuby
 
     describe '#frame_data' do
       it 'raises an exception because Request is abstract' do
-        expect { subject.frame_data }.to raise_error
+        expect { subject.frame_data }.to raise_error(StandardError, /Override/)
       end
     end
 

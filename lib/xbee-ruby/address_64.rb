@@ -1,4 +1,4 @@
-require 'xbee-ruby/adress'
+require 'xbee-ruby/address'
 
 module XBeeRuby
   class Address64 < Address
