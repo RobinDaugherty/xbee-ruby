@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 module XBeeRuby
-  describe XBee do
+  RSpec.describe XBee do
     let!(:serial) { double('SerialPort').as_null_object }
     let!(:xbee) { XBee.new port: '/dev/ttyS0', rate: 57600 }
 

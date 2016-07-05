@@ -1,13 +1,13 @@
 require 'spec_helper'
 
 module XBeeRuby
-  describe RxResponse do
+  RSpec.describe RxResponse do
     subject { RxResponse.new [0x90, 0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88, 0xaa, 0xbb, 0x01, 0x12, 0x34] }
 
-    its(:address64) { should == Address64.new(0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88) }
-    its(:address16) { should == Address16.new(0xaa, 0xbb) }
-    its(:receive_options) { should == 0x01 }
-    its(:data) { should == [0x12, 0x34] }
+    its(:address64) { is_expected.to eq Address64.new(0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88) }
+    its(:address16) { is_expected.to eq Address16.new(0xaa, 0xbb) }
+    its(:receive_options) { is_expected.to eq 0x01 }
+    its(:data) { is_expected.to eq [0x12, 0x34] }
 
     describe 'can be reconstructed from a packet' do
       it { is_expected.to eq(Response.from_packet(

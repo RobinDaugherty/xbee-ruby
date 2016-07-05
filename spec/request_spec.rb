@@ -1,9 +1,9 @@
 require 'spec_helper'
 
 module XBeeRuby
-  describe Request do
-    its(:frame_id) { should == 1 }
-    its(:frame_id) { should_not == Request.new.frame_id }
+  RSpec.describe Request do
+    its(:frame_id) { is_expected.to eq 1 }
+    its(:frame_id) { is_expected.to_not eq Request.new.frame_id }
 
     describe '#frame_data' do
       it 'raises an exception because Request is abstract' do
@@ -17,7 +17,7 @@ module XBeeRuby
         expect(subject).to receive(:frame_data).and_return [0x12, 0x34, 0x56]
         expect(subject).to receive(:frame_type).and_return 0xaa
       end
-      its (:packet) { should == Packet.new([0xaa, 0x01, 0x12, 0x34, 0x56]) }
+      its (:packet) { is_expected.to eq Packet.new([0xaa, 0x01, 0x12, 0x34, 0x56]) }
     end
   end
 end

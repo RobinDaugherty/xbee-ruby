@@ -1,22 +1,22 @@
 require 'spec_helper'
 
 module XBeeRuby
-  describe Address16 do
+  RSpec.describe Address16 do
     subject { Address16.new 0x12, 0x34 }
 
     describe '#to_s' do
-      its(:to_s) { should == '1234' }
+      its(:to_s) { is_expected.to eq '1234' }
     end
 
     describe '::from_s' do
       describe 'with a valid address string' do
         subject { Address16.from_s '1a2B' }
-        its(:to_a) { should == [0x1a, 0x2b] }
+        its(:to_a) { is_expected.to eq [0x1a, 0x2b] }
       end
 
       describe 'with a valid address string with separators' do
         subject { Address16.from_s '1a:2B' }
-        its(:to_a) { should == [0x1a, 0x2b] }
+        its(:to_a) { is_expected.to eq [0x1a, 0x2b] }
       end
 
       describe 'with an invalid address string' do
@@ -30,7 +30,7 @@ module XBeeRuby
     describe '::from_a' do
       describe 'with a valid address array' do
         subject { Address16.from_a [0x98, 0x76] }
-        its(:to_a) { should == [0x98, 0x76] }
+        its(:to_a) { is_expected.to eq [0x98, 0x76] }
       end
 
       describe 'with an invalid address array' do
