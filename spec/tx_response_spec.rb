@@ -11,7 +11,7 @@ module XBeeRuby
     its(:discovery_status) { should == 0x04 }
 
     describe 'can be reconstructed from a packet' do
-      it { should == Response.from_packet(Packet.new [0x8b, 0x1, 0xab, 0xcd, 0x02, 0x03, 0x04]) }
+      it { is_expected.to eq(Response.from_packet(Packet.new [0x8b, 0x1, 0xab, 0xcd, 0x02, 0x03, 0x04])) }
     end
   end
 end

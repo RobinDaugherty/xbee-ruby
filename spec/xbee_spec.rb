@@ -50,7 +50,7 @@ module XBeeRuby
       it 'should read the next packet from the serial port' do
         expect(serial).to receive(:readbyte).and_return(0x7e, 0x00, 0x02, 0x12, 0x34, 0xb9)
         xbee.open
-        xbee.read_packet.should == Packet.new([0x12, 0x34])
+        expect(xbee.read_packet).to eq(Packet.new([0x12, 0x34]))
       end
 
       it 'should raise an error if the checksum is wrong' do
@@ -64,23 +64,23 @@ module XBeeRuby
       it 'should read the next response from the serial port' do
         expect(serial).to receive(:readbyte).and_return(0x7e, 0x00, 0x07, 0x8b, 0x02, 0x79, 0x38, 0x00, 0x00, 0x00, 0xc1)
         xbee.open
-        xbee.read_response.should == TxResponse.new([0x8b, 0x02, 0x79, 0x38, 0x00, 0x00, 0x00])
+        expect(xbee.read_response).to eq(TxResponse.new([0x8b, 0x02, 0x79, 0x38, 0x00, 0x00, 0x00]))
       end
     end
 
     describe '#connected?' do
       context 'if it is not connected' do
-        its(:connected?) { should be_false }
+        its(:connected?) { should be_falsey }
       end
 
       context 'if it is connected' do
         before { xbee.open }
-        its(:connected?) { should be_true }
+        its(:connected?) { should be_truthy }
       end
 
       context 'if it is connected and then closed' do
         before { xbee.open; xbee.close }
-        its(:connected?) { should be_false }
+        its(:connected?) { should be_falsey }
       end
     end
   end

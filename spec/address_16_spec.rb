@@ -41,11 +41,11 @@ module XBeeRuby
     end
 
     describe '#==' do
-      it { should == Address16.new(0x12, 0x34) }
+      it { is_expected.to eq(Address16.new(0x12, 0x34)) }
     end
 
     describe '::BROADCAST' do
-      specify { Address16::BROADCAST.should == Address16.new(0xff, 0xfe)}
+      specify { expect(Address16::BROADCAST).to eq(Address16.new(0xff, 0xfe))}
     end
   end
 end

@@ -1,5 +1,5 @@
 require 'spec_helper'
 
 describe XBeeRuby do
-  specify { XBeeRuby::VERSION.should_not be_nil }
+  specify { expect(XBeeRuby::VERSION).not_to be_nil }
 end
