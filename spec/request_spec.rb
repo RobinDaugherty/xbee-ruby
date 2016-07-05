@@ -2,7 +2,6 @@ require 'spec_helper'
 
 module XBeeRuby
   RSpec.describe Request do
-    its(:frame_id) { is_expected.to eq 1 }
     its(:frame_id) { is_expected.to_not eq Request.new.frame_id }
 
     describe '#frame_data' do
