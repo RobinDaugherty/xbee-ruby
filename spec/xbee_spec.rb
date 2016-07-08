@@ -2,12 +2,10 @@ require 'spec_helper'
 
 module XBeeRuby
   RSpec.describe XBee do
-    let!(:serial) { double('SerialPort').as_null_object }
-    let!(:xbee) { XBee.new port: '/dev/ttyS0', rate: 57600 }
+    subject(:xbee) { XBee.new port: '/dev/ttyS0', rate: 57600 }
 
+    let(:serial) { double('SerialPort').as_null_object }
     before { allow(SerialPort).to receive(:create).and_return serial }
-
-    subject { xbee }
 
     describe '#open' do
       it 'opens the serial port with the correct settings' do
@@ -46,7 +44,6 @@ module XBeeRuby
     end
 
     describe '#read_packet' do
-
       it 'reads the next packet from the serial port' do
         expect(serial).to receive(:readbyte).and_return(0x7e, 0x00, 0x02, 0x12, 0x34, 0xb9)
         xbee.open
@@ -69,18 +66,26 @@ module XBeeRuby
     end
 
     describe '#connected?' do
+      subject { xbee.connected? }
+
       context 'if it is not connected' do
-        its(:connected?) { is_expected.to be_falsey }
+        it { is_expected.to be_falsey }
       end
 
       context 'if it is connected' do
-        before { xbee.open }
-        its(:connected?) { is_expected.to be_truthy }
-      end
+        before do
+          xbee.open
+        end
 
-      context 'if it is connected and then closed' do
-        before { xbee.open; xbee.close }
-        its(:connected?) { is_expected.to be_falsey }
+        it { is_expected.to be_truthy }
+
+        context 'and then closed' do
+          before do
+            xbee.close
+          end
+
+          it { is_expected.to be_falsey }
+        end
       end
     end
   end

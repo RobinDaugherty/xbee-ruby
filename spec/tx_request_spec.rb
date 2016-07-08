@@ -2,24 +2,46 @@ require 'spec_helper'
 
 module XBeeRuby
   RSpec.describe TxRequest do
-    subject { TxRequest.new Address64.new(0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88), [0x12, 0x34] }
+    subject(:request) { TxRequest.new destination_address, payload }
+    let(:destination_address) { Address64.new(0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88) }
+    let(:payload) { [0x12, 0x34] }
 
-    its(:frame_type) { is_expected.to eq 0x10 }
-    its(:address64) { is_expected.to eq Address64.new(0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88) }
-    its(:address16) { is_expected.to eq Address16::BROADCAST }
-    its(:data) { is_expected.to eq [0x12, 0x34] }
-    its(:options) { is_expected.to eq 0 }
-    its(:radius) { is_expected.to eq 0 }
-    its(:frame_data) { is_expected.to eq [0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88, 0xff, 0xfe, 0x00, 0x00, 0x12, 0x34]}
+    describe '#new' do
+      it 'sets the correct frame_type' do
+        expect(request.frame_type).to eq 0x10
+      end
+      it 'sets the correct address64' do
+        expect(request.address64).to eq Address64.new(0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88)
+      end
+      it 'sets the correct address16' do
+        expect(request.address16).to eq Address16::BROADCAST
+      end
+      it 'sets the correct data' do
+        expect(request.data).to eq [0x12, 0x34]
+      end
+      it 'sets the correct options' do
+        expect(request.options).to eq 0
+      end
+      it 'sets the correct radius' do
+        expect(request.radius).to eq 0
+      end
+      it 'sets the correct frame_data' do
+        expect(request.frame_data).to eq [0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88, 0xff, 0xfe, 0x00, 0x00, 0x12, 0x34]
+      end
 
-    describe 'if :options is specified' do
-      subject { TxRequest.new Address64::BROADCAST, [], options: 0xab }
-      its(:options) { is_expected.to eq 0xab }
-    end
+      context 'if :options is specified' do
+        subject(:request) { TxRequest.new Address64::BROADCAST, [], options: 0xab }
+        it 'sets the correct options' do
+          expect(request.options).to eq 0xab
+        end
+      end
 
-    describe 'if :radius are specified' do
-      subject { TxRequest.new Address64::BROADCAST, [], radius: 123 }
-      its(:radius) { is_expected.to eq 123 }
+      context 'if :radius is specified' do
+        subject(:request) { TxRequest.new Address64::BROADCAST, [], radius: 123 }
+        it 'sets the correct radius' do
+          expect(request.radius).to eq 123
+        end
+      end
     end
   end
 end

@@ -95,6 +95,8 @@ module XBeeRuby
       [START_BYTE, length >> 8, length & 0xff] + @data + [checksum]
     end
 
+    # Returns the packet bytes suitable for use with Escaped API mode. Special characters are
+    # preceded by a 0x7d and XORed with 0x20.
     def bytes_escaped
       [START_BYTE] + bytes[1..-1].flat_map { |b|
         if Packet.special_byte?(b) then
